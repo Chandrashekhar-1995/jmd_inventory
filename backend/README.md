@@ -6,4 +6,5 @@
     - create User Model
     - create APIError, APIResponse and other helher files
     - set error middleware
-    - write first API
+    - write first API Resister user
+    - write Login API

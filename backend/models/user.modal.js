@@ -1,9 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-
-const secretKey = process.env.JWT_SECRET;
-
 
 const userSchema = new mongoose.Schema(
     {
@@ -213,11 +209,6 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
  });
-
- userSchema.methods.getJWT = function(){
-  const user = this;
-  return jwt.sign({ _id: user._id }, secretKey, { expiresIn: "2d" });
-};
 
 userSchema.methods.validatePassword = async function (passwordInterByUser){
   const user = this;

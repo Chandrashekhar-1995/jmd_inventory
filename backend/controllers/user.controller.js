@@ -42,25 +42,27 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   }
 });
 
-export const signIn = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+export const signIn = asyncHandler(async (req, res, next) => {
+  const { identifier, password } = req.body;
 
-  const user = await User.findOne({ email });
+  try {
+    const user = await findUser(identifier);
+    if (!user) {
+      throw new ApiError(404, "User not found.");
+      }
 
-  if (user && (await user.comparePassword(password))) {
+    // Validate password using the schema method
+    const isPasswordCorrect = await user.validatePassword(password);
+    if (!isPasswordCorrect) {
+        throw new ApiError(401, "Invalid credentials.");
+    }
+
     const token = generateToken(res, user._id);
-
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      dept: user.dept,
-      isAdmin: user.isAdmin,
-      procurement: user.procurement,
-      token: token,
-    });
-  } else {
-    res.status(401);
-    throw new Error("invalid Email And Password !!");
+    res.cookie("token", token);
+    res.status(200).json(
+      new ApiResponse(200, user, `User logged in successfully.`)
+    );
+  } catch (err) {
+    next(err);
   }
 });
