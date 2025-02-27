@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Header from "../Header/Header";
-import Sidebar from "../Header/Sidebar";
+import Header from "../Header";
+import Sidebar from "../Sidebar";
+
 
 const Layout = ({ children }) => {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);

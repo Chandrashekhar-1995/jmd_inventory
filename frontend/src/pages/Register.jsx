@@ -34,8 +34,7 @@ const Register = () => {
         return;
       } else {
         const res = await register({ name, email, mobileNumber, address, password }).unwrap();
-
-        dispatch(userCredentials({ ...res }));
+        dispatch(userCredentials(res.data));
         toast.success("user created Succesfully");
         navigate(redirect);
       }
