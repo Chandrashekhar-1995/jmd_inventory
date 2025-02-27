@@ -8,7 +8,7 @@ import { userCredentials } from "../store/authSlice";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -29,10 +29,10 @@ const Login = () => {
   }, []);
 
   const submitHandler = async (e) => {
+    e.preventDefault();
     try {
       e.preventDefault();
-      const res = await login({ email, password }).unwrap();
-
+      const res = await login({ identifier, password }).unwrap();
       dispatch(userCredentials({ ...res }));
       toast.success("login Succesfully");
       navigate(redirect);
@@ -66,15 +66,15 @@ const Login = () => {
           </label>
           <input
             placeholder="Enter your Email "
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
             className="border-2 border-gray-300 p-2 w-full rounded-md"
           />
         </div>
 
         <div className="mb-4">
           <label
-            htmlFor="email"
+            htmlFor="password"
             className="block text-gray-500 text-sm font-bold"
           >
             password

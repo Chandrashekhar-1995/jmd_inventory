@@ -9,11 +9,13 @@ import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 
 const Register = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [name, setName] = useState("");
   const dispatch = useDispatch();
   const [register, { isLoading, error }] = useRegisterMutation();
 
@@ -31,7 +33,7 @@ const Register = () => {
         toast.error("password don't match");
         return;
       } else {
-        const res = await register({ name, email, password }).unwrap();
+        const res = await register({ name, email, mobileNumber, address, password }).unwrap();
 
         dispatch(userCredentials({ ...res }));
         toast.success("user created Succesfully");
@@ -57,7 +59,7 @@ const Register = () => {
         onSubmit={submitHandler}
       >
         <h1 className="text-center text-2xl font-bold">Register </h1>
-
+        {/* name */}
         <div className="mb-4">
           <label
             htmlFor="name"
@@ -72,7 +74,22 @@ const Register = () => {
             className="border-2 border-gray-300 p-2 w-full rounded-md"
           />
         </div>
-
+        {/* mobileNumber */}
+        <div className="mb-4">
+          <label
+            htmlFor="mobileNumber"
+            className="block text-gray-500 text-sm font-bold"
+          >
+            Mobile Number
+          </label>
+          <input
+            placeholder="Enter your Mobile Number "
+            value={mobileNumber}
+            onChange={(e) => setMobileNumber(e.target.value)}
+            className="border-2 border-gray-300 p-2 w-full rounded-md"
+          />
+        </div>
+        {/* email */}
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -87,10 +104,25 @@ const Register = () => {
             className="border-2 border-gray-300 p-2 w-full rounded-md"
           />
         </div>
-
+        {/* address */}
         <div className="mb-4">
           <label
-            htmlFor="email"
+            htmlFor="address"
+            className="block text-gray-500 text-sm font-bold"
+          >
+            Address
+          </label>
+          <input
+            placeholder="Enter your Address "
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="border-2 border-gray-300 p-2 w-full rounded-md"
+          />
+        </div>
+        {/* password */}
+        <div className="mb-4">
+          <label
+            htmlFor="password"
             className="block text-gray-500 text-sm font-bold"
           >
             password
@@ -103,13 +135,13 @@ const Register = () => {
             className="border-2 border-gray-300 p-2 w-full rounded-md"
           />
         </div>
-
+        {/* conferm passward */}
         <div className="mb-4">
           <label
-            htmlFor="email"
+            htmlFor="confermPassword"
             className="block text-gray-500 text-sm font-bold"
           >
-            password
+            conferm password
           </label>
           <input
             type="password"

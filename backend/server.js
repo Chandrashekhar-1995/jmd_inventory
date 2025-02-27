@@ -7,11 +7,17 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.routes.js";
 import { errorHandler, routeNotFound } from "./middlewares/errorHandler.middleware.js";
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials:true,
+}));
 
 app.get("/", (req, res) => {
   res.send(`<h1>WELCOME TO NODE JS </h1>`);
