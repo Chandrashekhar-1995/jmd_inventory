@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 5000;
 import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
-import userRoutes from "./routes/userRoutes.js";
-import { errorHandler, routeNotFound } from "./utils/errorHandler.js";
+import userRoutes from "./routes/user.routes.js";
+import { errorHandler, routeNotFound } from "./middlewares/errorHandler.middleware.js";
 
 app.get("/", (req, res) => {
   res.send(`<h1>WELCOME TO NODE JS </h1>`);
@@ -26,7 +26,7 @@ if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 
-app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/user", userRoutes);
 
 app.use("/*", routeNotFound);
 app.use(errorHandler);

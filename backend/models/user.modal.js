@@ -131,14 +131,15 @@ const userSchema = new mongoose.Schema(
                 values: ["Relationship Manager","Admin","Marketing Executive", "Manager", "Accountant", "Clerk", "Peon", "Office Boy", "Receptionist", "Trainee"],
                 message: '{VALUE} is not supported Designation'
               },
-              default:'Trainee',
+              default:"Trainee",
         },
         department:{
             type:String,
             enum: {
                 values: ["Sales", "Marketing", "Finance", "Human Resource", "Administration", "Accounts"],
                 message: '{VALUE} Department not found'
-              }
+              },
+              default:"Sales",
         },
         emergencyContactPerson:{
             type:String,
