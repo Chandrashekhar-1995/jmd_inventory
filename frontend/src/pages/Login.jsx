@@ -22,18 +22,18 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate("/dashboard");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     navigate("/dashboard");
+  //   }
+  // }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       e.preventDefault();
-      const res = await login({ identifier, password }).unwrap();
-      dispatch(userCredentials({ ...res }));
+      const res = await login({ identifier, password }).unwrap();    
+      dispatch(userCredentials(res.data));
       toast.success("login Succesfully");
       navigate(redirect);
     } catch (err) {
