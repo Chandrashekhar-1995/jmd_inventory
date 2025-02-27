@@ -1,26 +1,39 @@
-export const errorHandler = async (err, req, res, next) => {
-    let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  
-    let message = err.message;
-  
-    // check for specific errors
-    if (err.name === "castError" && err.kind === "ObjectId") {
-      statusCode = 404;
-      message = "Not Found resource";
+import { ApiResponse } from "./ApiResponse";
+
+export const errorHandler = (err, req, res, next) => {
+  let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  let message = err.message || "Internal Server Error";
+
+   // check for specific errors
+   if (err.name === "castError" && err.kind === "ObjectId") {
+    statusCode = 404;
+    message = "Not Found resource";
+  }
+
+    if (process.env.NODE_ENV !== "production") {
+        console.error(err.stack || err);
     }
-  
-    // additional error handling Logic can be added here
-  
-    // send the error response
-    res.status(statusCode).json({
-      message: message,
-      stack: process.env.NODE_ENV === "production" ? null : err.stack,
-    });
-  };
+
+    // Send a consistent error response
+    res.status(statusCode).json(
+        new ApiResponse(
+            statusCode,
+            null,
+            message
+        )
+    );
+};
+
   
   export const routeNotFound = (req, res, next) => {
     const error = new Error(`Not Found ${req.originalUrl} route`);
   
-    res.status(404);
+    res.status(404).json(
+      new ApiResponse(
+        statusCode,
+        null,
+        message
+      )
+    );
     next(error);
   };
