@@ -14,12 +14,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const [login, { isLoading, error }] = useLoginMutation();
   const { userInfo } = useSelector((state) => state.auth);
-
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-
   const redirect = sp.get("/redirect") || "/dashboard";
-
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -31,9 +28,9 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      e.preventDefault();
       const res = await login({ identifier, password }).unwrap();    
       dispatch(userCredentials(res.data));
+      console.log(res);
       toast.success("login Succesfully");
       navigate(redirect);
     } catch (err) {
