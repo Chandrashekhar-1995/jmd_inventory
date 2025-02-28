@@ -1,4 +1,7 @@
 import validator from "validator";
+import User from "../models/user.modal.js";
+import jwt from "jsonwebtoken";
+import { asyncHandler } from "../utils/asynchandler.js";
 import { ApiError } from "../utils/ApiError.js";
 
 export const validateSignupData = (req) => {
@@ -25,3 +28,24 @@ export const validateSignupData = (req) => {
         throw new ApiError(400, "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one symbol.");
     }
 };
+
+export const protect = asyncHandler(async (req, res, next) => {
+    const { token } = req.cookies.jwt;
+    try {
+        if (!token) {
+            throw new ApiError(401, "Please log in first.");
+        }
+        
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.userId).select("-password");
+        if (!user) {
+            throw new ApiError(401, "Invalid user. Please log in again.");
+        }
+
+        req.user = user;
+        next();
+        
+    } catch (err) {
+        next(err);
+    }
+  });
