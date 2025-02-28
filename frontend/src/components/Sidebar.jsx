@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { BiSolidUserPin, BiTime } from "react-icons/bi";
-import { BsCart4, BsCheck2Square, BsFillGrid3X3GapFill, BsGrid1X2Fill } from "react-icons/bs";
+import { BiTime } from "react-icons/bi";
 import { IoIosArrowUp, IoIosClose } from "react-icons/io";
-import { FaJediOrder, FaToolbox, FaTools, FaUser, FaUsers } from "react-icons/fa";
+import { FaJediOrder } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { IconBase } from "react-icons/lib";
 
 const Sidebar = ({ openSidebarToggle, openSidebar }) => {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -46,7 +43,7 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
 
   const handleSubmenuClick = (link) => {
     navigate(link);
-    setActiveMenu(null); // Close the submenu after navigation
+    setActiveMenu(null); 
   };
 
   return (
@@ -73,11 +70,11 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
             {/* {<IconBase>{menuItem.icon}</IconBase>} */}
             <p>{menuItem.text}</p>
             {activeMenu === index && menuItem.subMenu && (
-              <ul className="submenu">
+              <ul className="sidebar-list">
                 {menuItem.subMenu.map((subItem, subIndex) => (
                   <li
                     key={subIndex}
-                    className="submenu-item"
+                    className="sidebar-subMenu-list-item"
                     onClick={(e) => {
                       e.stopPropagation(); // Prevent the parent menu click event
                       handleSubmenuClick(subItem.link);
