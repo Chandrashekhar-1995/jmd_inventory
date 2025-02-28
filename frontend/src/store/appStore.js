@@ -3,9 +3,9 @@ import apiSlice from "./apiSlice";
 import authReducer from "./authSlice";
 import productReducer from "./productSlice";
 import cartSlice from "./cartSlice";
-import categorySlice from "./categorySlice";
+import categorySlice from "./categoriySlice";
 
-const store = configureStore({
+const appStore = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authReducer,

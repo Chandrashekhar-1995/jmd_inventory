@@ -6,7 +6,7 @@ import {
   createProductService,
   getProductService,
   updateProductService,
-} from "../reduxServices/productServices";
+} from "../services/productServices";
 
 const initialState = {
   products: [],

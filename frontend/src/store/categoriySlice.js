@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   createCatgoryService,
   getCategoriesService,
-} from "../reduxServices/productServices";
+} from "../services/productServices";
 import { toast } from "react-toastify";
 
 const initialState = {
