@@ -133,7 +133,7 @@ export const getAllProducts = asyncHandler(async (req, res, next) =>{
     try {
         const allProducts = await Product.find({});
 
-        res.status(200).json(new ApiResponse(200, allProducts, "Fetched all products successfully."));
+        res.status(200).json(new ApiResponse(200, {count:allProducts.length, allProducts}, "Fetched all products successfully."));
     } catch (err) {
         next(err);
     }
