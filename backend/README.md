@@ -8,3 +8,4 @@
     - set error middleware
     - write first API Resister user
     - write Login API
+    - create model for account, brand, product, category, customer and invoice
