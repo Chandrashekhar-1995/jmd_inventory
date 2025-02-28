@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(243 244 246);
+  background-color: #1d2634;
   color: #9e9ea4;
   font-family: "Montserrat", sans-serif;
 }
@@ -45,7 +45,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #0B72B9;
   padding: 0 30px 0 30px;
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
 }
@@ -59,7 +58,7 @@ body {
 #sidebar {
   grid-area: sidebar;
   height: 100vh;
-  background-color: #0B72B9;
+  background-color: #263043;
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
