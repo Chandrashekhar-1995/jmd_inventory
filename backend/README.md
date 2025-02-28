@@ -10,3 +10,4 @@
     - write Login API
     - create model for account, brand, product, category, customer and invoice
     - create protect middleware for check login
+    - create product api

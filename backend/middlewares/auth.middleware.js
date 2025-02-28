@@ -30,7 +30,7 @@ export const validateSignupData = (req) => {
 };
 
 export const protect = asyncHandler(async (req, res, next) => {
-    const { token } = req.cookies.jwt;
+    const  token  = req.cookies.jwt;
     try {
         if (!token) {
             throw new ApiError(401, "Please log in first.");

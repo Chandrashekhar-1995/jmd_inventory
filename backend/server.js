@@ -12,6 +12,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.routes.js";
+import productRoutes from "./routes/product.routes.js";
 import { errorHandler, routeNotFound } from "./middlewares/errorHandler.middleware.js";
 
 app.use(cors({
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/product", productRoutes);
 
 app.use("/*", routeNotFound);
 app.use(errorHandler);
