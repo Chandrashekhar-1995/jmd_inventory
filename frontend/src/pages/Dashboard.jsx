@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/productSlice";
 import { toast } from "react-toastify";
-import { PRODUCTS_URL } from "../store/constants";
 
 const Dashboard = () => {
   const { products, isSuccess, isLoading, isError, message } = useSelector((state) => state.products);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,40 +12,24 @@ const Dashboard = () => {
     if (isSuccess) {
       toast.success("products render Successfuly");
     }
-  }, []);
+  }, []); 
 
   return (
-    <div className="product-list w-full  px-4">
-      {categoryModal && <CategoryModal onClose={closeCategoryModal} />}
-      {createProductModal && (
-        <CreateProduct onClose={closeCreateProductModal} />
-      )}
-      <div className="">
-        <div className="py-4">
-          <button
-            className="px-5 bg-orange-600 p-2 rounded-3xl flex flex-col"
-            onClick={openCategoryHandler}
-          >
-            Create Category
-            <span className="m-auto ">{categories?.length}</span>
-          </button>
-        </div>
+    <div className="w-full mt-8 px-4">
+      <div className="flex items-center justify-between mb-2">
+        <p>Search</p>
+        <h1 className="">List Inventory</h1>
       </div>
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold">List Inventory</h1>
-        <button
-          onClick={openCreateProductModal}
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-        >
-          Create Asset
-        </button>
-      </div>
+
       {isLoading ? (
-        <p>Loading...</p>
-      ) : isError ? (
-        <p>{message}</p>
-      ) : (
-        <div className="overflow-x-auto">
+        <div className="flex justify-center items-center h-screen">
+          <div className="animate-spin rounded-full h-32 border-t-2 border-bn-2 border-gray-200"></div>
+        </div>
+      ): (
+        isError ? (
+          <p>{message}</p>
+        ) : (
+          <div className="overflow-x-auto">
           <table className="w-full bg-white text-gray-800">
             <thead>
               <tr className="bg-gray-200">
@@ -59,31 +41,12 @@ const Dashboard = () => {
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              {products &&
-                products?.map((product) => (
-                  <tr key={product._id} className="hover:bg-gray-100">
-                    <td className="py-2 px-4 border">{product.name}</td>
-                    <td className="py-2 px-4 border">{product.category}</td>
-                    <td className="py-2 px-4 border">
-                      ${product?.price?.toFixed(2)}
-                    </td>
-                    <td className="py-2 px-4 border">{product.stock}</td>
-                    <td className="py-2 px-4 border">{product.supplier}</td>
-                    <td>
-                      <button>
-                        <Link to={`/edit/${product._id}`}>Edit</Link>
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
+            
           </table>
         </div>
+        )
       )}
 
-      {/* <CreateProduct showModal={isModalVisible} closeModal={closeModal} /> */}
-      {/* <CreateProduct showModal={showModal} closeModal={closeModal} /> */}
     </div>
   );
 };
