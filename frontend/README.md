@@ -6,3 +6,4 @@
 - setup layout
 - setup redux store
 - setup dashboard inventory items
+- create warehouse

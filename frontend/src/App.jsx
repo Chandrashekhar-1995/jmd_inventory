@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./components/layout/Layout";
+import Warehouse from "./components/product/Warehouse";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route exact path="/register" element={<Register/>} />
         
         <Route exact path="/dashboard" element={<Layout><Dashboard/></Layout>} />
+        <Route exact path="/warehouse" element={<Layout><Warehouse/></Layout>} />
       </Routes>
     </BrowserRouter>
   );
