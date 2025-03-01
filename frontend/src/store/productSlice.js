@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { PRODUCTS_URL } from "./constants";
+import { BASE_URL, PRODUCTS_URL } from "./constants";
 import axios from "axios";
 import { toast } from "react-toastify";
 import {
@@ -16,12 +16,14 @@ const initialState = {
   isLoading: false,
 };
 
-//getall produts
+//get all produts
 export const getProducts = createAsyncThunk(
   "products/all",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`${PRODUCTS_URL}`);
+      const response = await axios.get(`${BASE_URL}${PRODUCTS_URL}/all`,{
+        withCredentials: true,
+      });
       return response.data;
     } catch (error) {
       const message =

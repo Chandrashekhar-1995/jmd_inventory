@@ -2,9 +2,15 @@ import axios from "axios";
 import { CATEGORY_URL, PRODUCTS_URL } from "../store/constants";
 
 export const createProductService = async (formData) => {
+  const response = await axios.post(`${PRODUCTS_URL}/create`, formData);
+
+  return response.data;
 };
 
 export const getProductService = async (id) => {
+  const response = await axios.get(`${PRODUCTS_URL}/${id}`);
+
+  return response.data;
 };
 
 // Service to update a product

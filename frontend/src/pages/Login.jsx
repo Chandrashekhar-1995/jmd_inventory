@@ -28,9 +28,9 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ identifier, password }).unwrap();    
+      const res = await login({ identifier, password }).unwrap();
+      console.log(res.headers) 
       dispatch(userCredentials(res.data));
-      console.log(res);
       toast.success("login Succesfully");
       navigate(redirect);
     } catch (err) {
