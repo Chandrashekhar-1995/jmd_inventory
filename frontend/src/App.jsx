@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./components/layout/Layout";
 import Warehouse from "./components/product/Warehouse";
+import AuthUser from "./components/AuthUser";
 
 const App = () => {
   return (
@@ -17,8 +18,20 @@ const App = () => {
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/register" element={<Register/>} />
         
-        <Route exact path="/dashboard" element={<Layout><Dashboard/></Layout>} />
-        <Route exact path="/warehouse" element={<Layout><Warehouse/></Layout>} />
+        <Route exact path="/dashboard" element={
+          <AuthUser>
+            <Layout>
+              <Dashboard />
+            </Layout>
+        </AuthUser>
+        } />
+        <Route exact path="/warehouse" element={
+          <AuthUser>
+            <Layout>
+              <Warehouse/>
+            </Layout>
+          </AuthUser>
+          } />
       </Routes>
     </BrowserRouter>
   );

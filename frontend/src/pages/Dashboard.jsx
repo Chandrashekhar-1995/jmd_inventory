@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/productSlice";
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { products, isSuccess, isLoading, isError, message } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProducts());
@@ -45,6 +47,11 @@ const Dashboard = () => {
                     <td className="py-2 px-4 border">{product.salePrice}</td>
                     <td className="py-2 px-4 border">{product.stockQuantity}</td>
                     <td className="py-2 px-4 border">{product.unit}</td>
+                    <td>
+                      <button>
+                        <Link to={`/edit/${product._id}`}>Edit</Link>
+                      </button>
+                    </td>
                   </tr>
                 ))}
             </tbody>

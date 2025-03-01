@@ -27,7 +27,7 @@ const Header = ({ openSidebar }) => {
         </h3>
       </div>
       <div className="header-right flex items-center space-x-2">
-        <p className="hidden md:block">Hello {user.userInfo.name}</p>
+        { user && <p className="hidden md:block">Hello {user?.userInfo?.name}</p>}
         <button className="flex items-center space-x-1" onClick={logout}>
           <BiLogOut size={28} /> Logout
         </button>

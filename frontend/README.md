@@ -7,3 +7,4 @@
 - setup redux store
 - setup dashboard inventory items
 - create warehouse
+- setup auth
