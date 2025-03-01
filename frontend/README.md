@@ -5,3 +5,4 @@
 - setup routing, page layout and header
 - setup layout
 - setup redux store
+- setup dashboard inventory items

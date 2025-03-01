@@ -13,38 +13,43 @@ const Dashboard = () => {
       toast.success("products render Successfuly");
     }
   }, []); 
-
   return (
     <div className="w-full mt-8 px-4">
       <div className="flex items-center justify-between mb-2">
         <p>Search</p>
         <h1 className="">List Inventory</h1>
       </div>
-
       {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
-          <div className="animate-spin rounded-full h-32 border-t-2 border-bn-2 border-gray-200"></div>
-        </div>
-      ): (
-        isError ? (
-          <p>{message}</p>
-        ) : (
-          <div className="overflow-x-auto">
+        <p>Loading...</p>
+      ) : isError ? (
+        <p>{message}</p>
+      ) : (
+        <div className="overflow-x-auto">
           <table className="w-full bg-white text-gray-800">
             <thead>
               <tr className="bg-gray-200">
+                <th className="py-2 px-4 border">Item code</th>
                 <th className="py-2 px-4 border">Name</th>
-                <th className="py-2 px-4 border">Category</th>
                 <th className="py-2 px-4 border">Price</th>
                 <th className="py-2 px-4 border">Stock</th>
-                <th className="py-2 px-4 border">Supplier</th>
+                <th className="py-2 px-4 border">Unit</th>
                 <th></th>
               </tr>
             </thead>
-            
+            <tbody>
+              {products &&
+                products.map((product) => (
+                  <tr key={product._id} className="hover:bg-gray-100">
+                    <td className="py-2 px-4 border">{product.itemCode}</td>
+                    <td className="py-2 px-4 border">{product.productName}</td>
+                    <td className="py-2 px-4 border">{product.salePrice}</td>
+                    <td className="py-2 px-4 border">{product.stockQuantity}</td>
+                    <td className="py-2 px-4 border">{product.unit}</td>
+                  </tr>
+                ))}
+            </tbody>
           </table>
         </div>
-        )
       )}
 
     </div>
