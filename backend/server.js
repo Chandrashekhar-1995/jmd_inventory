@@ -13,6 +13,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.routes.js";
 import productRoutes from "./routes/product.routes.js";
+import categoryRoutes from "./routes/category.routes.js";
 import { errorHandler, routeNotFound } from "./middlewares/errorHandler.middleware.js";
 
 app.use(cors({
@@ -21,7 +22,7 @@ app.use(cors({
 }));
 
 app.get("/", (req, res) => {
-  res.send(`<h1>WELCOME TO NODE JS </h1>`);
+  res.send(`<h1>WELCOME TO JMD MOBILE SHOP </h1>`);
 });
 
 app.use(express.json());
@@ -35,6 +36,7 @@ if (process.env.NODE_ENV !== "production") {
 
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/product", productRoutes);
+app.use("/api/v1/category", categoryRoutes);
 
 app.use("/*", routeNotFound);
 app.use(errorHandler);
