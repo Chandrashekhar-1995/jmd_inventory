@@ -36,7 +36,7 @@ export const getProducts = createAsyncThunk(
       return thunkAPI.rejectWithValue(message);
     }
   }
-);
+); 
 
 // get single product detail
 export const getProduct = createAsyncThunk(

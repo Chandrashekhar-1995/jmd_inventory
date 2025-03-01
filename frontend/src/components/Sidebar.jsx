@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiTime } from "react-icons/bi";
 import { IoIosArrowUp, IoIosClose } from "react-icons/io";
-import { FaJediOrder } from "react-icons/fa";
+import { FaJediOrder, FaToolbox } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ openSidebarToggle, openSidebar }) => {
@@ -33,6 +33,13 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
         { text: "Manage Purchase", link: "/purchase/invoice" },
         { text: "Manage Supplier", link: "/purchase/supplier" },
         { text: "Add Supplier", link: "/purchase/supplier/create" },
+      ],
+    },
+    {
+      text: "Warehouse",
+      // icon: <FaToolbox />,
+      subMenu: [
+        { text: "Warehouse", link: "/warehouse" },
       ],
     },
   ];

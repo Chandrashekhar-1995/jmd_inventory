@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Layout from "./components/layout/Layout";
 import Warehouse from "./components/product/Warehouse";
 import AuthUser from "./components/AuthUser";
+import ProductDetails from "./components/product/ProductDetails";
 
 const App = () => {
   return (
@@ -31,7 +32,17 @@ const App = () => {
               <Warehouse/>
             </Layout>
           </AuthUser>
-          } />
+          }
+        />
+
+        <Route exact path="/product/:id" element={
+          <AuthUser>
+            <Layout>
+              <ProductDetails/>
+            </Layout>
+          </AuthUser>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

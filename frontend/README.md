@@ -8,3 +8,4 @@
 - setup dashboard inventory items
 - create warehouse
 - setup auth
+- setup Product details

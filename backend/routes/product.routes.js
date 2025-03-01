@@ -7,7 +7,7 @@ const productRouter = express.Router();
 
 productRouter.post("/create", protect, createProduct);
 productRouter.get("/all", protect, getAllProducts);
-productRouter.get("/search/:id", protect, searchProductById);
+productRouter.get("/:id", protect, searchProductById);
 productRouter.put("/update/:id", protect, updateProduct);
 productRouter.delete("/delete/:id", protect, deleteProduct);
 productRouter.get("/template", protect, downloadTemplate);

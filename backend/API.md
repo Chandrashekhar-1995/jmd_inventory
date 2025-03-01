@@ -12,7 +12,7 @@
     - fetch all product (get)
     -- http://localhost:8000/api/v1/product/all
     - search by id (get)
-    -- http://localhost:8000/api/v1/product/search/:id
+    -- http://localhost:8000/api/v1/product/:id
     - update by id (put)
     -- http://localhost:8000/api/v1/product/update/:id
     - delete by id (delete)
