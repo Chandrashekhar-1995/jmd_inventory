@@ -24,12 +24,12 @@ export const getProducts = createAsyncThunk(
       const response = await axios.get(`${BASE_URL}${PRODUCTS_URL}/all`,{
         withCredentials: true,
       });
-      return response.data;
+      return response.data.data.allProducts;
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
+        (error.response.data &&
+          error.response.data.data &&
+          error.response.data.data.message) ||
         error.message ||
         error.toString();
       console.log(message);
