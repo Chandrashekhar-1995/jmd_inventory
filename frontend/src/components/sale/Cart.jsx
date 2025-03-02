@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
-import { removeFromCart } from "../store/cartSlice";
+import { removeFromCart } from "../../store/cartSlice";
 
 const Cart = () => {
   const { cartItems } = useSelector((state) => state.cart);

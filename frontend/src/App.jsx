@@ -8,7 +8,8 @@ import Layout from "./components/layout/Layout";
 import Warehouse from "./components/product/Warehouse";
 import AuthUser from "./components/AuthUser";
 import ProductDetails from "./components/product/ProductDetails";
-import Cart from "./components/Cart";
+import Cart from "./components/sale/Cart";
+import RequisitionType from "./components/sale/RequisitionType";
 
 const App = () => {
   return (
@@ -49,6 +50,15 @@ const App = () => {
           <AuthUser>
             <Layout>
               <Cart/>
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+        <Route exact path="/requisition-type" element={
+          <AuthUser>
+            <Layout>
+              <RequisitionType/>
             </Layout>
           </AuthUser>
           }

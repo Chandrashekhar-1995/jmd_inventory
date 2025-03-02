@@ -10,3 +10,4 @@
 - setup auth
 - setup Product details
 - cart component
+- setup request page
