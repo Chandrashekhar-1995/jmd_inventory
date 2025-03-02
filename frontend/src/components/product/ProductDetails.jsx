@@ -10,7 +10,7 @@ const { Option } = Select;
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
-  const [qty, setQty] = useState(10);
+  const [qty, setQty] = useState(1);
   const { product, isLoading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const selectRef = useRef();
@@ -36,7 +36,7 @@ const ProductDetails = () => {
 
   const addRequisitionHandler = () => {
     dispatch(addToCart({ ...product, qty }));
-    navigate("/store-requisition");
+    navigate("/cart");
   };
 
   if (isLoading) {

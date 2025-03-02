@@ -8,6 +8,7 @@ import Layout from "./components/layout/Layout";
 import Warehouse from "./components/product/Warehouse";
 import AuthUser from "./components/AuthUser";
 import ProductDetails from "./components/product/ProductDetails";
+import Cart from "./components/Cart";
 
 const App = () => {
   return (
@@ -39,6 +40,15 @@ const App = () => {
           <AuthUser>
             <Layout>
               <ProductDetails/>
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+        <Route exact path="/cart" element={
+          <AuthUser>
+            <Layout>
+              <Cart/>
             </Layout>
           </AuthUser>
           }

@@ -36,7 +36,7 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
       ],
     },
     {
-      text: "Warehouse",
+      text: "Inventory",
       // icon: <FaToolbox />,
       subMenu: [
         { text: "Warehouse", link: "/warehouse" },

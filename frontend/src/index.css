@@ -13,12 +13,12 @@
 }
 
 @layer components {
-  .btn {
+  /* .btn {
     @apply rounded-full flex items-center justify-center active:bg-dark_hover_1;
-  }
-  .btn_secondary {
+  } */
+  /* .btn_secondary {
     @apply w-[45px] h-[45px] rounded-full flex items-center justify-center bg-dark_bg_2;
-  }
+  } */
   .p16 {
     @apply px-[16px];
   }

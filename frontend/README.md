@@ -9,3 +9,4 @@
 - create warehouse
 - setup auth
 - setup Product details
+- cart component
