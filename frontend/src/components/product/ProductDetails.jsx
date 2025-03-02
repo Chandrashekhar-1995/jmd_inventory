@@ -10,7 +10,7 @@ const { Option } = Select;
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(10);
   const { product, isLoading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const selectRef = useRef();
@@ -24,8 +24,7 @@ const ProductDetails = () => {
   const handleInputKeyPress = (e) => {
     if (e.key === "Enter") {
       const parsedValue = parseInt(inputValue, 10);
-
-      if (parsedValue && parsedValue > 0 && parsedValue >= product.stockQuantity) {
+      if (parsedValue && parsedValue > 0 && parsedValue <= product.stockQuantity) {
         setQty(parsedValue);
       }
     }
@@ -81,7 +80,7 @@ const ProductDetails = () => {
                 className="w-[100%]"
               >
                 {[
-                  ...Array(product.stock)
+                  ...Array(product.stockQuantity)
                     .keys()
                     .map((x) => (
                       <Option valu={x + 1} key={x + 1}>
@@ -97,13 +96,13 @@ const ProductDetails = () => {
           <div className="text-white">
             <p className="text-lg font-semibold mb-2">Stock Information:</p>
             <p className="text-md mb-4">
-              {product?.stock > 0 ? "In Stock" : "Out of Stock"}
+              {product?.stockQuantity > 0 ? "In Stock" : "Out of Stock"}
             </p>
             <p className="text-md mb-4">
               <span className="font-semibold">Stock:</span> {product?.stockQuantity}
             </p>
             <p className="text-md mb-4">
-              <span className="font-semibold">Quantity:</span> {product?.qty}
+              <span className="font-semibold">Quantity:</span> {qty}
             </p>
             <p className="text-md mb-4">
               <span className="font-semibold">Unit of Measure:</span>{" "}
