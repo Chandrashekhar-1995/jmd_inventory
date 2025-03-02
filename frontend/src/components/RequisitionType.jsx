@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import CheckSteps from "../../components/CheckSteps";
-import { saveRequisitionMethod } from "../../store/cartSlice";
+import CheckSteps from "./CheckSteps";
+import { saveRequisitionMethod } from "../store/cartSlice";
 
 const RequisitionType = () => {
-  const [type1, saveTypeOne] = useState("FACTORY REQUISITION");
-  const [type2, saveTypeTwo] = useState("PURCHASE REQUISITION");
   const [selectedRequisitionType, setSelectedRequisitionType] = useState(
     "FACTORY REQUISITION"
   );

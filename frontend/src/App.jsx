@@ -9,7 +9,8 @@ import Warehouse from "./components/product/Warehouse";
 import AuthUser from "./components/AuthUser";
 import ProductDetails from "./components/product/ProductDetails";
 import Cart from "./components/sale/Cart";
-import RequisitionType from "./components/sale/RequisitionType";
+import RequisitionType from "./components/RequisitionType";
+import PurchaseRequisition from "./components/purchase/PurchaseRequisition";
 
 const App = () => {
   return (
@@ -63,6 +64,26 @@ const App = () => {
           </AuthUser>
           }
         />
+
+      <Route exact path="/purchase-requisition" element={
+          <AuthUser>
+            <Layout>
+              <PurchaseRequisition/>
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+        {/* <Route exact path="/confirm-requisition" element={
+          <AuthUser>
+            <Layout>
+              <PurchaseRequisition/>
+            </Layout>
+          </AuthUser>
+          }
+        /> */}
+
+
       </Routes>
     </BrowserRouter>
   );
