@@ -11,6 +11,7 @@ import ProductDetails from "./components/product/ProductDetails";
 import Cart from "./components/sale/Cart";
 import RequisitionType from "./components/RequisitionType";
 import PurchaseRequisition from "./components/purchase/PurchaseRequisition";
+import PlaceOrder from "./components/sale/placeOrder";
 
 const App = () => {
   return (
@@ -74,14 +75,14 @@ const App = () => {
           }
         />
 
-        {/* <Route exact path="/confirm-requisition" element={
+        <Route exact path="/placeorder" element={
           <AuthUser>
             <Layout>
-              <PurchaseRequisition/>
+              <PlaceOrder/>
             </Layout>
           </AuthUser>
           }
-        /> */}
+        />
 
 
       </Routes>
