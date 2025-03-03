@@ -5,6 +5,8 @@
     -- http://localhost:8000/api/v1/user/register
     - login user post
     -- http://localhost:8000/api/v1/user/login
+    - logout user route
+    -- http://localhost:8000/api/v1/user/logout
 
 ## Product API
     - create product (post)

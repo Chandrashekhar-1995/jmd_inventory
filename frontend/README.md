@@ -14,3 +14,4 @@
 - add purchase request
 - add ApprovedModal
 - setup place order
+- logout setup

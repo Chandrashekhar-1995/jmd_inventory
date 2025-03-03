@@ -67,3 +67,14 @@ export const signIn = asyncHandler(async (req, res, next) => {
     next(err);
   }
 });
+
+export const logout = asyncHandler( async (req, res, next) =>{
+  res.cookie("token", null, {
+    expires: new Date(Date.now())
+});
+res.cookie("jwt", null, {
+  expires: new Date(Date.now())
+})
+
+res.send("Logout successfully");
+});
