@@ -40,7 +40,7 @@ const PlaceOrder = () => {
   const placeOrderHandler = async () => {
     try {  
       const payload = {
-        orderItems: await Promise.all(
+        items: await Promise.all(
           cartItems.map(async (item) => {
             if (!item.supplier) {
               const product = await getProducts(item._id);
@@ -64,10 +64,10 @@ const PlaceOrder = () => {
       };
       // await createOrder(orderData).unwrap();
       const { res } = await createOrder(payload).unwrap();
-      console.log("res", res);
+      toast.success("Order created Succesfully");
       dispatch(clearCartItems());
     } catch (err) {
-      console.error("Failed to place order: ", err);
+      toast.error(err?.data?.message || err.error);
     }
   };
   return (
