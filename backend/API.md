@@ -38,3 +38,23 @@
     - delete by id (delete)
     -- http://localhost:8000/api/v1/category/delete/:id/sub-category
 
+## Order API
+    - create order (post)
+    -- http://localhost:8000/api/v1/order/create
+    - fetch all order (get)
+    -- http://localhost:8000/api/v1/order/all
+    - fetch my order (get)
+    -- http://localhost:8000/api/v1/order/mine
+    - search by id (get)
+    -- http://localhost:8000/api/v1/order/search/:id
+    - update by id (put)
+    -- http://localhost:8000/api/v1/order/update/receive/:id
+    - update stock (put)
+    -- http://localhost:8000/api/v1/order/updatestock/:id
+    - update order deliver (put)
+    -- http://localhost:8000/api/v1/order/deliver/procur/:id
+    - update order item price (put)
+    -- http://localhost:8000/api/v1/order/updateItemPrice/:id
+    - delete order by id (delete)
+    -- http://localhost:8000/api/v1/order/delete/:id
+ 

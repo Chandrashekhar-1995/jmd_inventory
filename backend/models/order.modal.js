@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
     {
-            invoiceType:{
+            orderType:{
                 type:String,
                 enum:{
                     values:["Non GST", "GST", "Bill of Supply"],
@@ -10,10 +10,22 @@ const orderSchema = new mongoose.Schema(
                 },
                 default:"Non GST"
             },
-            invoiceNumber: {
+            orderNumber: {
                 type: String,
                 required: true,
                 unique: true,
+            },
+            approvedData: {
+                reqBy: { type: String },
+                approvedBy: { type: String },
+                comment: { type: String },
+            },
+            requisitionSteps: {
+                type: String,
+                required: [true, "please choose the type of Requisition"],
+                enum: {
+                  values: ["FACTORY REQUISITION", "PURCHASE REQUISITION"],
+                },
             },
             date: {
                 type: Date,
@@ -108,6 +120,13 @@ const orderSchema = new mongoose.Schema(
                 type: Date,
                 default: Date.today,
             },
+            paymentMode: {
+                type: String,
+                required: [true, "Please choose payment mode"],
+                enum: {
+                  values: ["Cash", "Phone Pay"],
+                },
+            },
             paymentAccount: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Account",
@@ -139,6 +158,22 @@ const orderSchema = new mongoose.Schema(
             deliveryTerm: {
                 type: String,
                 max: 500,
+            },
+            isDelivered: {
+                type: Boolean,
+                required: true,
+                default: false,
+              },
+            deliveredAt: {
+                type: Date,
+            },
+            isReceived: {
+                type: Boolean,
+                required: true,
+                default: false,
+            },
+            receivedAt: {
+              type: Date,
             },
         },
         { timestamps: true }
