@@ -12,6 +12,8 @@ import Cart from "./components/sale/Cart";
 import RequisitionType from "./components/RequisitionType";
 import PurchaseRequisition from "./components/purchase/PurchaseRequisition";
 import PlaceOrder from "./components/sale/placeOrder";
+import CreateCustomer from "./components/customer/CreateCustomer";
+import CustomerLinksPage from "./pages/CustomerLinksPage";
 
 const App = () => {
   return (
@@ -84,7 +86,14 @@ const App = () => {
           }
         />
 
-
+        <Route exact path="/auth/user/customer" element={
+          <AuthUser>
+            <Layout>
+              <CustomerLinksPage/>
+            </Layout>
+          </AuthUser>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

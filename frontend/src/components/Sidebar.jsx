@@ -42,6 +42,9 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
         { text: "Warehouse", link: "/warehouse" },
       ],
     },
+    {
+      text: "Customer", link: "/auth/user/customer" ,
+    },
   ];
 
   const handleMenuClick = (index) => {
