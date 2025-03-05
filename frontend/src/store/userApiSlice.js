@@ -16,11 +16,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USERS_URL}/register`,
         method: "POST",
         body: data,
+        credentials: 'include',
       }),
     }),
     listUsers: builder.query({
       query: () => ({
         url: `${USERS_URL}`,
+        credentials: 'include',
       }),
       keepUnusedDataFor: 5,
     }),
@@ -29,6 +31,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USERS_URL}/${data.id}`,
         method: "puT",
         body: data,
+        credentials: 'include',
       }),
     }),
   }),

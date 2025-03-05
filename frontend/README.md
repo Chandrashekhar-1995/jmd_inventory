@@ -15,3 +15,4 @@
 - add ApprovedModal
 - setup place order
 - logout setup
+- create customer form
