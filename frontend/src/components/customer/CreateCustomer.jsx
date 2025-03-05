@@ -15,32 +15,32 @@ const CreateCustomer = ({showCreateCustomer, setShowCreateCustomer}) => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
-    avatar:"",                // optional
-    name: "",                 // required   
-    address: "",              // required   
-    city:undefined,           // optional   
-    state: undefined,         // optional   
-    pinCode:undefined,        // optional   
-    country:undefined,        // optional   
-    email:undefined,          // optional   
-    contactNumber: undefined,        // optional   
-    mobileNumber: "",         // required   
-    panNo: "",                // optional   
-    gstin: "",                // optional   
-    gstType: "Unregistered",  // optional   
-    tradeName: "",            // optional   
-    accountType: "Debit",     // optional   
-    openingBalance: 0,        // optional   
-    documentType: "",         // optional   
-    documentNo: "",           // optional   
-    gender:undefined,            // optional
-    refferedBy:"",            // optional
-    dateOfBirth: undefined,  // optional  
-    marrigeAniversary: undefined,    // optional  
-    creditAllowed: "No",      // optional   
-    creditLimit: 0,           // optional  
-    remark: "",               // optional   
-    bio:"",                   // optional
+    avatar:"",
+    name: "",
+    address: "", 
+    city:undefined,
+    state: undefined, 
+    pinCode:undefined,
+    country:undefined,     
+    email:"",
+    contactNumber: undefined,
+    mobileNumber: "",        
+    panNo: "",               
+    gstin: "",               
+    gstType: "Unregistered", 
+    tradeName: "",           
+    accountType: "Debit",    
+    openingBalance: 0,       
+    documentType: "",        
+    documentNo: "",          
+    gender:undefined,        
+    refferedBy:"",        
+    dateOfBirth: undefined,
+    marrigeAniversary: undefined,
+    creditAllowed: "No",     
+    creditLimit: 0,    
+    remark: "",              
+    bio:"",       
   });
 
   const handleChange = (e) => {
@@ -55,10 +55,9 @@ const CreateCustomer = ({showCreateCustomer, setShowCreateCustomer}) => {
     setSuccessMessage("");
     try {
       await dispatch(createCustomer(formData)).unwrap();
-      toast.success("Product created successfully!");
-
-    } catch (error) {
-      toast.error("Failed to create Customer !");
+      toast.success("Customer created successfully!");
+    } catch (err) {
+          toast.error(err);
     }
   };
   return (

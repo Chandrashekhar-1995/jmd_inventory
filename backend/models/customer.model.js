@@ -68,7 +68,6 @@ const customerSchema = new mongoose.Schema(
                 },
                 message: '{VALUE} is not a valid email address!',
             },
-            default: null,
         },
         avatar: {
             type: String,// cloudanery url
