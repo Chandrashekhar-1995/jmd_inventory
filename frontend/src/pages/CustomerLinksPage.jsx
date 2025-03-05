@@ -4,7 +4,6 @@ const CustomerLinksPage = () => {
   return (
     <div>
         <h1>Customers</h1>
-        <CustomerLinksPage/>
     </div>
   )
 }

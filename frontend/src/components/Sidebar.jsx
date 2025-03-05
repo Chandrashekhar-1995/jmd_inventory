@@ -47,8 +47,12 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
     },
   ];
 
-  const handleMenuClick = (index) => {
+  const handleMenuClick = (index, menuItem) => {
+    if (!menuItem.subMenu) {
+      navigate(menuItem.link);
+    } else {
     setActiveMenu(activeMenu === index ? null : index);
+    }
   };
 
   const handleSubmenuClick = (link) => {
@@ -75,7 +79,7 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
           <li
             className="sidebar-list-item"
             key={index}
-            onClick={() => handleMenuClick(index)}
+            onClick={() => handleMenuClick(index, menuItem)}
           >
             {/* {<IconBase>{menuItem.icon}</IconBase>} */}
             <p>{menuItem.text}</p>
@@ -95,6 +99,10 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
                 ))}
               </ul>
             )}
+
+            {/* {activeMenu === index && !menuItem.subMenu && (
+              navigate(menuItem.link)
+            )} */}
           </li>
         ))}
       </ul>
