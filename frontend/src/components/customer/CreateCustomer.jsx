@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { Modal } from "antd";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Modal, Select } from "antd";
+import {createCustomer} from "../../store/customerSlice";
+const { Option } = Select;
 
 const CreateCustomer = ({showCreateCustomer, setShowCreateCustomer}) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -9,6 +12,7 @@ const CreateCustomer = ({showCreateCustomer, setShowCreateCustomer}) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [showMoreFields, setShowMoreFields] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     avatar:"",                // optional
@@ -50,19 +54,11 @@ const CreateCustomer = ({showCreateCustomer, setShowCreateCustomer}) => {
     setErrorMessage("");
     setSuccessMessage("");
     try {
-      const response = await axios.post(
-        "http://localhost:7777/api/v1/auth/customer/create",
-        formData,
-        {
-          withCredentials:true
-        }
-      );
-      setSuccessMessage("Customer Created successful !");
-      navigate("/sales/invoice/create")
-    } catch (err) {
-      setErrorMessage(err.response?.data?.message || "An unexpected error occurred");
-    } finally {
-      setLoading(false);
+      await dispatch(createCustomer(formData)).unwrap();
+      toast.success("Product created successfully!");
+
+    } catch (error) {
+      toast.error("Failed to create Customer !");
     }
   };
   return (
