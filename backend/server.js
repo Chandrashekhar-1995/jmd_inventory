@@ -16,6 +16,7 @@ import customerRoutes from "./routes/customer.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import categoryRoutes from "./routes/category.routes.js";
 import orderRoutes from "./routes/order.routes.js";
+import invoiceRoutes from "./routes/invoice.routes.js";
 import { errorHandler, routeNotFound } from "./middlewares/errorHandler.middleware.js";
 
 app.use(cors({
@@ -41,6 +42,7 @@ app.use("/api/v1/customer", customerRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/order", orderRoutes);
+app.use("/api/v1/invoice", invoiceRoutes);
 
 app.use("/*", routeNotFound);
 app.use(errorHandler);

@@ -59,4 +59,17 @@
     -- http://localhost:8000/api/v1/order/updateItemPrice/:id
     - delete order by id (delete)
     -- http://localhost:8000/api/v1/order/delete/:id
+
+
+# Invoice API
+    - create invoice (post)
+    -- http://localhost:8000/api/v1/invoice/create
+    - fetch all invoice (get)
+    -- http://localhost:8000/api/v1/invoice/all-invoice
+    - fetch last invoice (get)
+    -- http://localhost:8000/api/v1/invoice/last-invoice
+    - search by id (get)
+    -- http://localhost:8000/api/v1/invoice/search/:id
+    - update by id (put)
+    -- http://localhost:8000/api/v1/invoice/update/:id
  

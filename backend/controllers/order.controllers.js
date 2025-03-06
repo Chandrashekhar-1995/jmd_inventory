@@ -13,6 +13,8 @@ const generateOrderNumber = async () => {
     const lastNumber = lastOrder ? parseInt(lastOrder.orderNumber.split("-")[1]) : 0;
     return `Ord-${(lastNumber + 1).toString().padStart(4, "0")}`;
 };
+
+
 // Create Order
 export const newOrder = asyncHandler(async (req, res, next) => {
     const { 
@@ -46,7 +48,7 @@ export const newOrder = asyncHandler(async (req, res, next) => {
             throw new ApiError(400, "Item details are required.");
         }     
 
-        const finalCustomerId = billTo === "Cash" ? "6790a5b3d50038409a777e3d" : customerId;
+        const finalCustomerId = billTo === "Cash" ? "67c81c9bcca8d1fd6423df5a" : customerId;
         const customer = await Customer.findById(finalCustomerId);
         if (!customer) {
             throw new ApiError(404, "Customer not found.");
