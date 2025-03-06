@@ -115,7 +115,235 @@ const CreateCustomer = ({showCreateCustomer, setShowCreateCustomer}) => {
                 required
               />
             </div>
+            {/* Toggle Button */}
+            <div className="mb-3 mt-2">
+              <button
+              onClick={() => setShowMoreFields(!showMoreFields)}
+              className="inputForm hover:bg-gray-300"
+              >
+              {showMoreFields ? "Hide Additional Fields" : "More Fields"}
+              </button>
+            </div>
           </div>
+
+          {/* Optional Fields */}
+          { showMoreFields && (
+          <div className="space-y-4">
+            {/* Address Details */}
+            <div className="mb-3 mt-2">
+              <label className="block text-sm font-medium text-gray-900 ">
+              Address Details
+              </label>
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="City"
+                required
+              />
+
+              <input
+                type="text"
+                name="state"
+                value={formData.state}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="State"
+                required
+              />
+
+              <input
+                type="text"
+                name="pinCode"
+                value={formData.pinCode}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="Pin Code"
+                required
+              />
+
+              <input
+                type="text"
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="Country"
+                required
+              />
+
+              <input
+                type="text"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+               className="inputForm my-4"
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            {/* Others Details */}
+            <div className="mb-3 mt-2">
+                <label className="block text-sm font-medium text-gray-900 ">
+                  Others Details
+                </label>
+                <input
+                  type="text"
+                  name="refferedBy"
+                  value={formData.refferedBy}
+                  onChange={handleChange}
+                  className="inputForm my-4"
+                  placeholder="Reffered By"
+                  required
+                />
+              <input
+                type="text"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="Gender"
+                required
+              />
+            </div>
+
+            {/* Tax Details */}
+            <div className="mb-3 mt-2">
+              <label className="block text-sm font-medium text-gray-900 ">
+              Tax Details
+              </label>
+              <input
+                type="text"
+                name="panNo"
+                value={formData.panNo}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="PAN No"
+                required
+              />
+
+              <input
+                type="text"
+                name="gstin"
+                value={formData.gstin}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="GSTIN"
+                required
+              />
+
+              <input
+                type="text"
+                name="gstType"
+                value={formData.gstType}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="GST Type"
+                required
+              />
+
+              <input
+                type="text"
+                name="tradeName"
+                value={formData.tradeName}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="Trade Name"
+                required
+              />
+            </div>
+
+            {/* Document Details */}
+            <div className="mb-3 mt-2">
+              <label className="block text-sm font-medium text-gray-900 ">
+              Document Details
+              </label>
+              <input
+                type="text"
+                name="documentType"
+                value={formData.documentType}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="Document Type"
+                required
+              />
+
+              <input
+                type="text"
+                name="documentNo"
+                value={formData.documentNo}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="Document Number"
+                required
+              />
+            </div>
+
+            {/* Important Dates */}
+            <div className="mb-3 mt-2">
+              <label className="block text-sm font-medium text-gray-900 ">
+                Important Dates
+              </label>
+              <input
+                type="date"
+                name="dateOfBirth"
+                value={formData.dateOfBirth}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="Date of Birth"
+                required
+              />
+              
+              <input
+                type="date"
+                name="marrigeAniversary"
+                value={formData.marrigeAniversary}
+                onChange={handleChange}
+                className="inputForm my-4"
+                placeholder="Aniversary"
+                required
+              />
+              </div>
+
+            {/* Others Details */}
+            <div className="border border-gray-300 col-span-5 relative">
+                <div className="absolute -top-3 left-2 bg-gray-100 px-1 text-sm font-semibold">
+                    Other Details
+                </div>
+
+                {/* Credit Allowed */}
+                <div className="col-span-2 grid grid-cols-3 m-2 mt-7">
+                  <label className="block text-xs font-medium mb-1">Credit Allowed</label>
+                  <div className="flex items-center gap-4">
+                    <label className="flex items-center text-xs">
+                      <input type="radio" name="creditAllowed" value="Yes" checked={formData.     creditAllowed === "Yes"} onChange={handleChange} className="mr-2" /> Yes
+                    </label>
+                    <label className="flex items-center text-xs">
+                      <input type="radio" name="creditAllowed" value="No" checked={formData.      creditAllowed === "No"} onChange={handleChange} className="mr-2" /> No
+                    </label>
+                  </div>
+                </div>
+
+                {/* Credit Limit  */}
+                <div className="col-span-2 grid grid-cols-3 m-2">
+                  <label className="text-xs font-medium pt-4">Credit Limit</label>
+                  <input type="text" name="creditLimit" className="col-span-2 border    border-gray-300 rounded p-2 text-xs m-2" value={formData.creditLimit} onChange=   {handleChange} />
+                </div>
+
+                {/* Remark */}
+                <div className="col-span-2 grid grid-cols-3 m-2">
+                  <label className="text-xs font-medium">Remark</label>
+                  <textarea name="remark" className="col-span-2 border border-gray-300 rounded p-2    text-xs" rows="2" value={formData.remark} onChange={handleChange} ></textarea>
+                </div>
+                </div>
+
+
+            </div>
+          )
+          }
 
           <div className="mt-4 flex justify-end mr-5">
             <button

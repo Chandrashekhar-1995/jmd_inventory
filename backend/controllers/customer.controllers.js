@@ -9,6 +9,7 @@ import { asyncHandler } from "../utils/asynchandler.js";
 import { findUserOrCustomer } from "../utils/dbHelpers.js";
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
+import bcrypt from "bcryptjs";
 
 // Get __dirname equivalent in ES module
 const __filename = fileURLToPath(import.meta.url);
@@ -21,7 +22,6 @@ export const createCustomer = asyncHandler(async (req, res, next) => {
     contactNumber,
     mobileNumber,
     address,
-    password,
     city,
     state,
     pinCode,
@@ -61,16 +61,21 @@ export const createCustomer = asyncHandler(async (req, res, next) => {
       // Check for duplicate email or mobile number 
     const existingUser = await findUserOrCustomer(email) || await findUserOrCustomer(mobileNumber);
     if (existingUser) {
-        console.log(existingUser);
       return res.status(400).json({ message: 'Email or mobile number already exists.' });
     }
+
+
+    const salt = await bcrypt.genSalt(10); 
+    const hashPassword = await bcrypt.hash("ShekharMobiles9@", salt);
+
+
     // Create new customer
     const customer = new Customer({
         name,
         contactNumber,
         mobileNumber,
         address,
-        password,
+        password :hashPassword,
         city,
         state,
         pinCode,
