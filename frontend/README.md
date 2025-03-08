@@ -16,3 +16,4 @@
 - setup place order
 - logout setup
 - create customer form
+- i deside make it as thain modify it
