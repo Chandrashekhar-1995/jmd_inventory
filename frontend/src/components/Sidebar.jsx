@@ -79,7 +79,7 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
               </li>
               <li>
                 <Link
-                  to="/store-requisition"
+                  to="/cart"
                   className="flex items-center text-gray-300 hover:text-black hover:underline"
                 >
                   <BsCart4 className="icon" /> CART

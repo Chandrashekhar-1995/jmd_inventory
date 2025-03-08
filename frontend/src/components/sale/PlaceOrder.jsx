@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useCreateOrderMutation } from "../../store/orderApiSlice";
+import { useCreateOrderMutation } from "../../store/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader";
