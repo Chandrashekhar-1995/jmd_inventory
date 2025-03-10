@@ -3,6 +3,12 @@ import { ORDERS_URL } from "./constants";
 
 const orderApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    lastOrder: builder.mutation({
+      query: () => ({
+        url: `${ORDERS_URL}/last-order`,
+        credentials: 'include',
+      }),
+    }),
     createOrder: builder.mutation({
       query: (order) => ({
         url: `${ORDERS_URL}/create`,
@@ -53,6 +59,7 @@ const orderApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useLastOrderMutation,
   useCreateOrderMutation,
   useGetMyOrdersQuery,
   useGetOrdersQuery,

@@ -14,6 +14,25 @@ const generateOrderNumber = async () => {
     return `Ord-${(lastNumber + 1).toString().padStart(4, "0")}`;
 };
 
+// fetch last order
+export const lastOrderFetch = asyncHandler(async (req, res, next) => {
+    try {
+        const lastOrder = await Order.findOne().sort({ createdAt: -1 })
+        .populate("user","orderNumber");  
+
+        if (lastOrder) {
+            res.status(201).json(
+            new ApiResponse(201, { lastOrder }, "last orders fetched successfully.")
+            )
+        } else {
+            res.status(201).json(
+            new ApiResponse(404, {}, "No invoices found")
+            )
+        }
+    } catch (err) {
+        next(err);
+    }
+});
 
 // Create Order
 export const newOrder = asyncHandler(async (req, res, next) => {

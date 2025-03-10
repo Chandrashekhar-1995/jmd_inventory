@@ -14,6 +14,7 @@ import PurchaseRequisition from "./components/purchase/PurchaseRequisition";
 import PlaceOrder from "./components/sale/placeOrder";
 import CreateCustomer from "./components/customer/CreateCustomer";
 import CustomerLinksPage from "./pages/CustomerLinksPage";
+import MyOrders from "./components/purchase/MyOrders";
 
 const App = () => {
   return (
@@ -81,6 +82,15 @@ const App = () => {
           <AuthUser>
             <Layout>
               <PlaceOrder/>
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+        <Route exact path="/my-orders-list" element={
+          <AuthUser>
+            <Layout>
+              <MyOrders/>
             </Layout>
           </AuthUser>
           }

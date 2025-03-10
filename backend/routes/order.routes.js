@@ -1,9 +1,10 @@
 import express from "express";
 import { protect } from "../middlewares/auth.Middleware.js";
-import { newOrder, allOrders, myOrders, orderDetails, removeOrder, updateOrderReceived, updateOrder, updateOrderProcurement, updateOderItemPrice } from "../controllers/order.controllers.js";
+import { lastOrderFetch, newOrder, allOrders, myOrders, orderDetails, removeOrder, updateOrderReceived, updateOrder, updateOrderProcurement, updateOderItemPrice } from "../controllers/order.controllers.js";
 
 const orderRouter = express.Router();
 
+orderRouter.get("/last-order", protect, lastOrderFetch);
 orderRouter.post("/create", protect, newOrder);
 orderRouter.get("/", protect, allOrders);
 orderRouter.get("/mine", protect, myOrders);

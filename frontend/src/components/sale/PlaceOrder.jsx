@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useCreateOrderMutation } from "../../store/orderSlice";
+import { useCreateOrderMutation, useLastOrderMutation } from "../../store/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader";
@@ -13,6 +13,7 @@ const PlaceOrder = () => {
   const { cartItems, approvedData, requisitionSteps } = useSelector(
     (state) => state.cart
   );
+  const [lastOrder] = useLastOrderMutation();
   const [createOrder, { isLoading, error, isSuccess }] =
     useCreateOrderMutation();
   const navigate = useNavigate();
@@ -31,6 +32,12 @@ const PlaceOrder = () => {
         navigate("/my-orders-list");
         }
         }, [approvedData.reqBy, isSuccess]);
+    
+    useEffect( ()=>{
+      const fetchLastInvoice = async () => {
+        const res = await lastOrder().unwrap();
+      };
+    },[])
 
     const removeFromCartHandler = (id) => {
       dispatch(removeFromCart(id));
@@ -78,6 +85,7 @@ const PlaceOrder = () => {
           <h1 className="text-slate-200 flex justify-center pb-4">
             PLACE ORDER SCREEN
           </h1>
+          <h2 className="text-slate-200 flex justify-center pb-4">Order no</h2>
           {cartItems.length === 0 ? (
             <h4>
               Your Cart is Empty{" "}

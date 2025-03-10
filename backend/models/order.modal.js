@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
     {
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "User",
+          },
             orderType:{
                 type:String,
                 enum:{
@@ -175,6 +180,28 @@ const orderSchema = new mongoose.Schema(
             receivedAt: {
               type: Date,
             },
+            approvedData: {
+                reqBy: { type: String },
+                approvedBy: { type: String },
+                comment: { type: String },
+              },
+              approvedStatusProcur: {
+                paymentMethod: { type: String, default: "Cash" },
+              },
+              requisitionSteps: {
+                type: String,
+                required: [true, "please choose the type of Requisition"],
+                enum: {
+                  values: ["FACTORY REQUISITION", "PURCHASE REQUISITION"],
+                },
+              },
+              price: {
+                type: Number,
+                default: "0",
+              },
+              supplier: {
+                type: String,
+              },
         },
         { timestamps: true }
     );
