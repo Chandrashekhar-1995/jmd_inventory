@@ -33,8 +33,6 @@ const RequisitionType = () => {
 
     if (selectedRequisitionType === "FACTORY REQUISITION") {
       navigate("/confirm-requisition");
-    } else if (selectedRequisitionType === "SALE REQUISITION") {
-      navigate("/sale-requisition");
     } else if (selectedRequisitionType === "PURCHASE REQUISITION") {
       navigate("/purchase-requisition");
     }
@@ -67,7 +65,6 @@ const RequisitionType = () => {
                 className="w-full py-2 px-3 mt-1 border border-gray-300 bg-white text-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               >
                 <option value="FACTORY REQUISITION">FACTORY REQUISITION</option>
-                <option value="SALE REQUISITION">SALE REQUISITION</option>
                 <option value="PURCHASE REQUISITION">
                   PURCHASE REQUISITION
                 </option>
