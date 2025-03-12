@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import Loader from "../../components/Loader";
+import Loader from "../Loader";
 import {
   useDeliverOrderProcurMutation,
   useGetOrderDetailsQuery,

@@ -18,7 +18,10 @@ import MyOrders from "./components/purchase/MyOrders";
 import OrderDetails from "./components/order/OrderDetails";
 import LPO from "./components/product/LPO";
 import LocalPurchaseOrders from "./components/order/LocalPurchaseOrders";
-import OrderDetailProcurement from "./components/order/OrderDetailProcurement";
+import OrderDetailsProcur from "./components/order/OrderDetailsProcur";
+import PendingRequisitions from "./components/order/PendingRequisitions";
+import GRN from "./components/product/GRN";
+import UserList from "./components/user/UserList";
 
 const App = () => {
   return (
@@ -127,10 +130,37 @@ const App = () => {
           }
         />
 
+        <Route exact path="/pending-requisitions" element={
+          <AuthUser>
+            <Layout>
+              <PendingRequisitions />
+            </Layout>
+          </AuthUser>
+          }
+        />
+
         <Route exact path="/procurement/order/:id" element={
           <AuthUser>
             <Layout>
-              <OrderDetailProcurement />
+              <OrderDetailsProcur/>
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+      <Route exact path="/goods-receive-note" element={
+          <AuthUser>
+            <Layout>
+              <GRN/>
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+      <Route exact path="/listUsers" element={
+          <AuthUser>
+            <Layout>
+              <UserList/>
             </Layout>
           </AuthUser>
           }
