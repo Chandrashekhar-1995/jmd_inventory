@@ -10,7 +10,7 @@ const { Option } = Select;
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
-  const [qty, setQty] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const { product, isLoading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const selectRef = useRef();
@@ -25,7 +25,7 @@ const ProductDetails = () => {
     if (e.key === "Enter") {
       const parsedValue = parseInt(inputValue, 10);
       if (parsedValue && parsedValue > 0 && parsedValue <= product.stockQuantity) {
-        setQty(parsedValue);
+        setQuantity(parsedValue);
       }
     }
   };
@@ -35,7 +35,7 @@ const ProductDetails = () => {
   }, [dispatch]);
 
   const addRequisitionHandler = () => {
-    dispatch(addToCart({ ...product, qty }));
+    dispatch(addToCart({ ...product, quantity }));
     navigate("/cart");
   };
 
@@ -60,14 +60,14 @@ const ProductDetails = () => {
           <p className="text-gray-300 text-lg mb-2">
             <span className="font-semibold">Price:</span> ${product?.salePrice}
           </p>
-          {/* // input qty */}
+          {/* // input quantity */}
           <div>
             <div className=" py-3">
-              <h3>Select QTY</h3>
+              <h3>Select Quantity</h3>
             </div>
             <div className="flex items-center space-x-4">
               <input
-                placeholder=" ADD  QTY  HERE"
+                placeholder=" ADD  QUANTITY  HERE"
                 value={inputValue}
                 onChange={handleInputChange}
                 ref={selectRef}
@@ -75,8 +75,8 @@ const ProductDetails = () => {
                 className="text-gray-700 outline-none p-1 rounded-2xl"
               />
               <Select
-                onChange={(value) => setQty(value)}
-                value={qty}
+                onChange={(value) => setQuantity(value)}
+                value={quantity}
                 className="w-[100%]"
               >
                 {[
@@ -102,7 +102,7 @@ const ProductDetails = () => {
               <span className="font-semibold">Stock:</span> {product?.stockQuantity}
             </p>
             <p className="text-md mb-4">
-              <span className="font-semibold">Quantity:</span> {qty}
+              <span className="font-semibold">Quantity:</span> {quantity}
             </p>
             <p className="text-md mb-4">
               <span className="font-semibold">Unit of Measure:</span>{" "}

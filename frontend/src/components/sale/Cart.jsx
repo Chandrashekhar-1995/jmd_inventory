@@ -57,9 +57,9 @@ const Cart = () => {
                         <td className="py-2 px-4 border-b">{item.productName}</td>
                         <td className="py-2 px-4 border-b">{item?.itemCode ? item.itemCode : "N/A"}</td>
                         <td className="py-2 px-4 border-b">{item?.unit}</td>
-                        <td className="py-2 px-4 border-b">{item?.qty}</td>
+                        <td className="py-2 px-4 border-b">{item?.quantity}</td>
                         <td className="py-2 px-4 border-b">{item?.salePrice}</td>
-                        <td className="py-2 px-4 border-b">{item?.qty * item?.salePrice}</td>
+                        <td className="py-2 px-4 border-b">{item?.quantity * item?.salePrice}</td>
                         <td onClick={() => removeFromCartHandler(item._id)}>
                           <AiOutlineDelete
                             size={28}

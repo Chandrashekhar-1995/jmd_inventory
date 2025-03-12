@@ -13,11 +13,12 @@ export const processItems = async (items, invoiceId) => {
         if (!item.productName || !item.quantity || !item.salePrice) {
             throw new ApiError(400, "Item name, quantity, and sale price are required for each item.");
         }
+        
 
         // Fetch the product from the database
-        const product = await Product.findById(item.item);
+        const product = await Product.findById(item._id);
         if (!product) {
-            throw new ApiError(404, `Item with ID ${item.item} not found.`);
+            throw new ApiError(404, `Item with ID ${item._id} not found.`);
         }
 
         // Check stock quantity

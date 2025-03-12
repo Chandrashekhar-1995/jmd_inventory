@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import ApprovedModal from "../approvedModal";
 
-const PurchaseRequisition = () => {
+const SaleRequisition = () => {
   const { cartItems, requisitionSteps } = useSelector((state) => state.cart);
   const [showApprovedModal, setShowApprovedModal] = useState(false);
   const navigate = useNavigate();
@@ -99,4 +99,4 @@ const PurchaseRequisition = () => {
   );
 };
 
-export default PurchaseRequisition;
+export default SaleRequisition;

@@ -5,13 +5,13 @@ import Account from "../models/account.model.js";
 import { asyncHandler } from "../utils/asynchandler.js";
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
-import { processItems } from "../middlewares/invoice.middleware.js";
+import { processItems } from "../middlewares/order.middleware.js";
 
 // Generate invoice number
 const generateOrderNumber = async () => {
     const lastOrder = await Order.findOne().sort({ createdAt: -1 });
     const lastNumber = lastOrder ? parseInt(lastOrder.orderNumber.split("-")[1]) : 0;
-    return `Ord-${(lastNumber + 1).toString().padStart(4, "0")}`;
+    return `ORD-${(lastNumber + 1).toString().padStart(4, "0")}`;
 };
 
 // fetch last order
@@ -26,7 +26,7 @@ export const lastOrderFetch = asyncHandler(async (req, res, next) => {
             )
         } else {
             res.status(201).json(
-            new ApiResponse(404, {}, "No invoices found")
+            new ApiResponse(404, {}, "No order found")
             )
         }
     } catch (err) {
@@ -37,37 +37,31 @@ export const lastOrderFetch = asyncHandler(async (req, res, next) => {
 // Create Order
 export const newOrder = asyncHandler(async (req, res, next) => {
     const { 
-        orderType,
+        user,
         orderNumber,
         approvedData,
         requisitionSteps,
         date,
         dueDate,
         placeOfSupply,
-        billTo,
         customerId,
         customerName,
         mobileNumber,
         address,
         items,
-        discountAmount,
-        paymentDate,
+        advanceAmount,
         paymentMode,
         privateNote,
         customerNote,
-        receivedAmount,
         deliveryTerm,
-        isDelivered,
-        deliveredAt,
-        isReceived,
-        receivedAt,
+        orderBy,
+        supplier,
         } = req.body;
     try {
         if (!items || items.length === 0) {
             throw new ApiError(400, "Item details are required.");
-        }     
-
-        const finalCustomerId = billTo === "Cash" ? "67c81c9bcca8d1fd6423df5a" : customerId;
+        }
+        const finalCustomerId = customerName === "Cash" ? "67c81c9bcca8d1fd6423df5a" : customerId;
         const customer = await Customer.findById(finalCustomerId);
         if (!customer) {
             throw new ApiError(404, "Customer not found.");
@@ -78,46 +72,34 @@ export const newOrder = asyncHandler(async (req, res, next) => {
             throw new ApiError(404, `${paymentMode} Account not found, please create account first.`);
         }
 
+        // Process items and get total amount
+        const { itemDetails, totalAmount } = await processItems(items);
+
         // Create the invoice (not saved yet)
         const newOrder = new Order({
-            orderType,
+            user: user ? user : req.user._id,
             orderNumber :orderNumber ? orderNumber : await generateOrderNumber(),
             approvedData,
             requisitionSteps,
             date,
             dueDate,
             placeOfSupply,
-            billTo,
-            customer: finalCustomerId,
+            customer: customer._id,
             customerName,
             mobileNumber,
             address,
-            discountAmount,
+            items: itemDetails,
+            totalAmount,
+            advanceAmount,
+            paymentMode,
             paymentAccount:account._id,
-            paymentDate,
+            dueAmount:totalAmount-advanceAmount,
             privateNote,
             customerNote,
             deliveryTerm,
-            isDelivered,
-            deliveredAt,
-            isReceived,
-            receivedAt,
-            soldBy: soldBy ? soldBy : req.user._id,
+            supplier,
+            orderBy: orderBy ? orderBy : req.user._id,
         });
-
-        // Process items and get total amount
-        const { itemDetails, totalAmount } = await processItems(items, newOrder._id);
-
-        newOrder.items = itemDetails;
-        newOrder.totalAmount = totalAmount;
-        newOrder.totalPayableAmount = totalAmount - discountAmount;
-        newOrder.receivedAmount = receivedAmount;
-        newOrder.dueAmount = newOrder.totalPayableAmount - receivedAmount;
-        newOrder.status = newOrder.dueAmount === 0 
-            ? "Paid" 
-            : receivedAmount > 0 
-                ? "Partially Paid" 
-                : "Unpaid";
 
         // Save the invoice
         await newOrder.save();

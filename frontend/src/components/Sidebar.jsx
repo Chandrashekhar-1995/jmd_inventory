@@ -23,7 +23,7 @@ const Sidebar = ({ openSidebarToggle, openSidebar }) => {
   const [isProcurmentOpen, setIsProcurmentOpen] = useState(false);
 
   const { cartItems } = useSelector((state) => state.cart);
-  const totalQty = cartItems?.reduce((acc, item) => acc + Number(item.qty), 0);
+  const totalQty = cartItems?.reduce((acc, item) => acc + Number(item.quantity), 0);
 
   const toggleInventory = () => {
     setIsInventoryOpen(!isInventoryOpen);
