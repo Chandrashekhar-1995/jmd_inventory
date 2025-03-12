@@ -15,6 +15,7 @@ import PlaceOrder from "./components/sale/placeOrder";
 import CreateCustomer from "./components/customer/CreateCustomer";
 import CustomerLinksPage from "./pages/CustomerLinksPage";
 import MyOrders from "./components/purchase/MyOrders";
+import OrderDetails from "./components/order/OrderDetails";
 
 const App = () => {
   return (
@@ -91,6 +92,15 @@ const App = () => {
           <AuthUser>
             <Layout>
               <MyOrders/>
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+        <Route exact path="/orderdetail/:id" element={
+          <AuthUser>
+            <Layout>
+              <OrderDetails />
             </Layout>
           </AuthUser>
           }

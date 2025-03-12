@@ -33,7 +33,7 @@ const orderApiSlice = apiSlice.injectEndpoints({
     }),
     getOrderDetails: builder.query({
       query: (orderId) => ({
-        url: `${ORDERS_URL}/${orderId}`,
+        url: `${ORDERS_URL}/search/${orderId}`,
         credentials: 'include',
       }),
       keepUnusedDataFor: 5,

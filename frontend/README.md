@@ -19,3 +19,4 @@
 - i deside make it as thain modify it
 - setup create order
 - setup my order list
+- order details component

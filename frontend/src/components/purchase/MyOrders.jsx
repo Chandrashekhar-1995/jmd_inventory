@@ -16,8 +16,6 @@ const MyOrders = () => {
       </div>
     );
   }
-
-  console.log("orders", data.data);
   return (
     <div className="">
       <div>
