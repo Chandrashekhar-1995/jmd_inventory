@@ -16,6 +16,9 @@ import CreateCustomer from "./components/customer/CreateCustomer";
 import CustomerLinksPage from "./pages/CustomerLinksPage";
 import MyOrders from "./components/purchase/MyOrders";
 import OrderDetails from "./components/order/OrderDetails";
+import LPO from "./components/product/LPO";
+import LocalPurchaseOrders from "./components/order/LocalPurchaseOrders";
+import OrderDetailProcurement from "./components/order/OrderDetailProcurement";
 
 const App = () => {
   return (
@@ -101,6 +104,33 @@ const App = () => {
           <AuthUser>
             <Layout>
               <OrderDetails />
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+        <Route exact path="/LPO-factory" element={
+          <AuthUser>
+            <Layout>
+              <LPO />
+            </Layout>
+          </AuthUser>
+          }
+        />  
+
+        <Route exact path="/LPO-procurement" element={
+          <AuthUser>
+            <Layout>
+              <LocalPurchaseOrders />
+            </Layout>
+          </AuthUser>
+          }
+        />
+
+        <Route exact path="/procurement/order/:id" element={
+          <AuthUser>
+            <Layout>
+              <OrderDetailProcurement />
             </Layout>
           </AuthUser>
           }

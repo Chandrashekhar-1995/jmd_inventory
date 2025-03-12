@@ -125,7 +125,7 @@ export const allOrders = asyncHandler(async (req, res, next) => {
     try {
         const orders = await Order.find({})
         .sort("-createdAt")
-        .populate("user", "name email dept");  
+        .populate("user", "name email department");  
 
         res.status(201).json(new ApiResponse(201, orders, "all orders fetched successfully."));
     } catch (err) {

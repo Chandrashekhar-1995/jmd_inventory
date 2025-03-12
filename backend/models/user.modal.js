@@ -132,7 +132,14 @@ const userSchema = new mongoose.Schema(
         department:{
             type:String,
             enum: {
-                values: ["Sales", "Marketing", "Finance", "Human Resource", "Administration", "Propriter", "Accounts"],
+                values: ["Sales", "Marketing", "Finance", "Human Resource", "Administration", "Propriter", "Accounts",
+                "Company",
+                "Warehouse",
+                "Maintenance",
+                "Production",
+                "Silo",
+                "Procurement",
+                ],
                 message: '{VALUE} Department not found'
               },
               default:"Sales",
