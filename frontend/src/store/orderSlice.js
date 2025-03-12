@@ -15,7 +15,7 @@ const orderApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { ...order },
         credentials: 'include',
-      }),
+      }), 
     }),
     getMyOrders: builder.query({
       query: () => ({

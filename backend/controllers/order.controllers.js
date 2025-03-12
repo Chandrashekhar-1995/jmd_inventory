@@ -110,6 +110,16 @@ export const newOrder = asyncHandler(async (req, res, next) => {
     }
 });
 
+// fetch my orders
+export const myOrders = asyncHandler(async (req, res, next) =>{
+    try {
+        const myOrders = await Order.find({ user: req.user._id }).sort("-createdAt");       
+        res.status(200).json(new ApiResponse(200, myOrders, "My orders fetched."));
+    } catch (err) {
+        next(err);
+    }
+});
+
 // fetch all orders
 export const allOrders = asyncHandler(async (req, res, next) => {
     try {
@@ -118,17 +128,6 @@ export const allOrders = asyncHandler(async (req, res, next) => {
         .populate("user", "name email dept");  
 
         res.status(201).json(new ApiResponse(201, orders, "all orders fetched successfully."));
-    } catch (err) {
-        next(err);
-    }
-});
-
-// fetch my orders
-export const myOrders = asyncHandler(async (req, res, next) =>{
-    try {
-        const myOrders = await Order.find({ user: req.user._id }).sort("-createdAt");
-
-        res.status(200).json(new ApiResponse(200, myOrders, "All my orders fetched successfully."));
     } catch (err) {
         next(err);
     }

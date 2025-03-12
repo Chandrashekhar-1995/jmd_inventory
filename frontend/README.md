@@ -17,3 +17,5 @@
 - logout setup
 - create customer form
 - i deside make it as thain modify it
+- setup create order
+- setup my order list

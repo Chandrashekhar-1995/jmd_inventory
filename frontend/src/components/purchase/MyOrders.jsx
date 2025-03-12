@@ -17,12 +17,12 @@ const MyOrders = () => {
     );
   }
 
-  console.log("orders", data?.orders);
+  console.log("orders", data.data);
   return (
     <div className="">
       <div>
         <h1 className="flex justify-center text-3xl">MY REQUISITIONS ORDERS</h1>
-        {data?.orders.length === 0 ? (
+        {data?.data.length === 0 ? (
           <h3 className="text-sm text-blue-100 ">
             YOUR REQUISITION IS EMPTY
             <Link to="/dashboard" className="ml-2 underline text-blue-800">
@@ -35,22 +35,24 @@ const MyOrders = () => {
               <thead>
                 <tr>
                   <th>S/N</th>
-                  <th>GRN</th>
+                  <th>ORDER NO.</th>
                   <th>PRODUCT NAME </th>
                   <th>DATE</th>
-                  <th>QTY</th>
+                  <th>QUANTITY</th>
                   {/* <th>PAID</th> */}
                   <th>REQUISITION STATUS </th>
                   <th></th>
                 </tr>
               </thead>
               <tbody className=" ">
-                {data?.orders?.map((order, i) => (
+                {data?.data.map((order, i) => (
                   <tr key={order?._id} className="border-b border-gray-300">
-                    <td>{i}</td>
-                    <td>{order?._id}</td>
-                    <td className="uppercase"> {order?.orderItems[0]?.name}</td>
+                    <td>{i+1}</td>
+                    <td > {order?.orderNumber}</td>
+                    <td className="uppercase"> {order?.items[0]?.productName
+                    }</td>
                     <td>{order?.createdAt?.substring(0, 10)}</td>
+                    <td className="uppercase"> {order?.items[0]?.quantity}</td>
 
                     <td>
                       {order?.isDelivered ? (
