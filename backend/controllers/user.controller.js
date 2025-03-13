@@ -78,3 +78,14 @@ res.cookie("jwt", null, {
 
 res.send("Logout successfully");
 });
+
+// Get all users
+export const getAllUsers = asyncHandler(async (req, res, next) =>{
+    try {
+        const allUsers = await User.find({});
+
+        res.status(200).json(new ApiResponse(200, {count:allUsers.length, allUsers}, "Fetched all users successfully."));
+    } catch (err) {
+        next(err);
+    }
+});

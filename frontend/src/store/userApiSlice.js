@@ -21,7 +21,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     }),
     listUsers: builder.query({
       query: () => ({
-        url: `${USERS_URL}`,
+        url: `${USERS_URL}/all`,
         credentials: 'include',
       }),
       keepUnusedDataFor: 5,
@@ -32,7 +32,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "puT",
         body: data,
         credentials: 'include',
-      }),
+      }), 
     }),
   }),
 });
@@ -41,5 +41,5 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useListUsersQuery,
-  useUpdateUserClrMutation,
+  useUpdateUserClrMutation, 
 } = userApiSlice;

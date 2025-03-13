@@ -20,3 +20,4 @@
 - setup create order
 - setup my order list
 - order details component
+- user details
